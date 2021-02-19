@@ -17,14 +17,14 @@ export class YahooFinanceTicker {
     return new Promise((resolve) => {
       this.client = new ws.client();
       this.client.connect("wss://streamer.finance.yahoo.com/");
-      this.client.on("connect", (connection) => {
+      this.client.on("connect", (connection: any) => {
         this.logger("Yahoo Finance WS Connected");
         this.connection = connection;
         resolve(true);
         connection.on("message", this.handleConnectionMessage);
       });
 
-      this.client.on("connectFailed", function (error) {
+      this.client.on("connectFailed", function (error: any) {
         this.logger("Connect Error: " + error.toString());
       });
     });
